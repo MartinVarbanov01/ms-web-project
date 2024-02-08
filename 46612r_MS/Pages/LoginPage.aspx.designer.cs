@@ -7,12 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _46612r_MS
+namespace _46612r_MS.Pages
 {
 
 
-    public partial class SiteMaster
+    public partial class LoginPageaspx
     {
+
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// logo control.
@@ -24,39 +33,48 @@ namespace _46612r_MS
         protected global::System.Web.UI.WebControls.Image logo;
 
         /// <summary>
-        /// search_items control.
+        /// Username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox search_items;
+        protected global::System.Web.UI.WebControls.TextBox Username;
 
         /// <summary>
-        /// search_btn control.
+        /// Password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button search_btn;
+        protected global::System.Web.UI.WebControls.TextBox Password;
 
         /// <summary>
-        /// profile_btn control.
+        /// wrong_pass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button profile_btn;
+        protected global::System.Web.UI.WebControls.Label wrong_pass;
 
         /// <summary>
-        /// MainContent control.
+        /// Login_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button Login_btn;
+
+        /// <summary>
+        /// Register_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Register_btn;
     }
 }

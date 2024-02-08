@@ -11,7 +11,7 @@ namespace _46612r_MS.Pages
 {
 
 
-    public partial class LoginPageaspx
+    public partial class RegisterPage
     {
 
         /// <summary>
@@ -33,6 +33,15 @@ namespace _46612r_MS.Pages
         protected global::System.Web.UI.WebControls.Image logo;
 
         /// <summary>
+        /// header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label header;
+
+        /// <summary>
         /// Username control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace _46612r_MS.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Username;
+
+        /// <summary>
+        /// Email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
         /// Password control.
@@ -51,12 +69,30 @@ namespace _46612r_MS.Pages
         protected global::System.Web.UI.WebControls.TextBox Password;
 
         /// <summary>
-        /// Login_btn control.
+        /// Password2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Login_btn;
+        protected global::System.Web.UI.WebControls.TextBox Password2;
+
+        /// <summary>
+        /// pass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pass;
+
+        /// <summary>
+        /// Register_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Register_btn;
     }
 }

@@ -6,15 +6,46 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %></title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        #logo {
+            height: 70px;
+        }
+        table, tr, td{
+            border:solid 1px;
+        }
+        table{
+            background-color:#131921;
+            width:100%;
+        }
+        #search_items{
+            max-width:none;
+            width:92%;
+            height:50px;
+            margin-left:2%;
+            border-radius: 5px 0px 0px 5px;
+        }
+        #search_btn{
+            width:5%;
+            height:50px;
+            border-radius: 0 5px 5px 0px;
+            background-color:orange;
+        }
+        #profile_btn{
+            height:50px;
+            border-radius:5px;
+            background-color:#131921;
+            border-color:white;
+            color:white
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -37,9 +68,9 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <%--<nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -53,6 +84,21 @@
                 </div>
             </div>
         </nav>
+        --%>
+        <table>
+            <tr>
+                <td style="width:0px;">
+                    <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
+                </td>
+                <td style="text-align:center;">
+                    <asp:TextBox ID="search_items" Text="Search Alazomn" runat="server" />
+                    <asp:Button ID="search_btn" Text="&#128269;" runat="server" />
+                </td>
+                <td style="width:10px;">
+                    <asp:Button ID="profile_btn" Text="My Profile" runat="server" />
+                </td>
+            </tr>
+        </table>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -65,5 +111,25 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+    <script>
+        var search = document.getElementById("search_items");
+        search.addEventListener("click", search_items_click)
+        search.addEventListener("keypress", search_item)
+        function search_items_click() {
+            search.value = "";
+        }
+        function search_item() {
+            if (event.keyCode == 13) {
+                $.ajax({
+                    url: 'Pages/RegisterPage',
+                    type: "get",
+                    async: true,
+                    success: function (result) {
+                        window.location.href = "/Pages/MainPage";
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
