@@ -11,10 +11,12 @@ namespace _46612r_MS.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["userID"] == null && false)
+            if (Session["userID"] == null && false)
             {
                 Response.Redirect("LoginPage");
             }
+            string search = Request.Params.AllKeys.Any() ? Request.Params["search"] : "";
+
         }
     }
 }

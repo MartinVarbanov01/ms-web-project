@@ -27,19 +27,20 @@
         }
         #search_items{
             max-width:none;
-            width:92%;
+            width:89%;
             height:50px;
             margin-left:2%;
             border-radius: 5px 0px 0px 5px;
         }
         #search_btn{
-            width:5%;
+            width:7%;
             height:50px;
             border-radius: 0 5px 5px 0px;
             background-color:orange;
         }
         #profile_btn{
             height:50px;
+            width:100%;
             border-radius:5px;
             background-color:#131921;
             border-color:white;
@@ -91,11 +92,11 @@
                     <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
                 </td>
                 <td style="text-align:center;">
-                    <asp:TextBox ID="search_items" Text="Search Alazomn" runat="server" />
-                    <asp:Button ID="search_btn" Text="&#128269;" runat="server" />
+                    <asp:TextBox OnTextChanged="search_items_TextChanged" ID="search_items" Text="Search Alazomn" runat="server" />
+                    <asp:Button OnClick="search_btn_Click" ID="search_btn" Text="&#128269;" runat="server" />
                 </td>
-                <td style="width:10px;">
-                    <asp:Button ID="profile_btn" Text="My Profile" runat="server" />
+                <td style="width:15%; text-align:center">
+                    <asp:Button OnClick="profile_btn_Click" ID="profile_btn" Text="My Profile" runat="server" />
                 </td>
             </tr>
         </table>
@@ -114,21 +115,8 @@
     <script>
         var search = document.getElementById("search_items");
         search.addEventListener("click", search_items_click)
-        search.addEventListener("keypress", search_item)
         function search_items_click() {
             search.value = "";
-        }
-        function search_item() {
-            if (event.keyCode == 13) {
-                $.ajax({
-                    url: 'Pages/RegisterPage',
-                    type: "get",
-                    async: true,
-                    success: function (result) {
-                        window.location.href = "/Pages/MainPage";
-                    }
-                });
-            }
         }
     </script>
 </body>

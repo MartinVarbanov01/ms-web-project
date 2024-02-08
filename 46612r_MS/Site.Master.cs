@@ -11,7 +11,28 @@ namespace _46612r_MS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (search_items.Text != "Search Alazomn")
+            {
+                Response.Redirect("~/Pages/MainPage?search=" + search_items.Text);
+            }
+        }
 
+        protected void search_btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/MainPage");
+        }
+
+        protected void search_items_TextChanged(object sender, EventArgs e)
+        {
+            if(search_items.Text != "Search Alazomn")
+            {
+                Response.Redirect("~/Pages/MainPage?search=" + search_items.Text);
+            }
+        }
+
+        protected void profile_btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Profile");
         }
     }
 }
