@@ -11,6 +11,8 @@
     <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <NavigationProperty Name="ProductsImages" Relationship="Self.FK_ProductsImages_Products" FromRole="Products" ToRole="ProductsImages" />
     <NavigationProperty Name="Users" Relationship="ManagementModel.FK_Products_Users" FromRole="Products" ToRole="Users" />
+    <Property Name="ProductStatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ProductStatus" Relationship="ManagementModel.FK_Products_ProductStatus" FromRole="Products" ToRole="ProductStatus" />
   </EntityType>
   <EntityType Name="ProductsImages">
     <Key>
@@ -124,6 +126,11 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="ProductStatus" EntityType="ManagementModel.ProductStatus" />
+    <AssociationSet Name="FK_Products_ProductStatus" Association="ManagementModel.FK_Products_ProductStatus">
+      <End Role="ProductStatus" EntitySet="ProductStatus" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -145,6 +152,26 @@
       </Principal>
       <Dependent Role="Products">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductStatus">
+    <Key>
+      <PropertyRef Name="IDProductStatus" />
+    </Key>
+    <Property Name="IDProductStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductStatus1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="ManagementModel.FK_Products_ProductStatus" FromRole="ProductStatus" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK_Products_ProductStatus">
+    <End Type="ManagementModel.ProductStatus" Role="ProductStatus" Multiplicity="1" />
+    <End Type="ManagementModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductStatus">
+        <PropertyRef Name="IDProductStatus" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductStatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

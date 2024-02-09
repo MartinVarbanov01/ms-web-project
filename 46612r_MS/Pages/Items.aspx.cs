@@ -19,7 +19,7 @@ namespace _46612r_MS.Pages
                 Response.Redirect("LoginPage");
             }
             int userID = (int)Session["userID"];
-            foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products)
+            foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products.Where(p => p.ProductStatusID == 1))
             {
                 Panel name_desc = new Panel();
                 name_desc.Style.Add("margin-top", "10px");
@@ -76,6 +76,7 @@ namespace _46612r_MS.Pages
                 ProductDescription = prodDesc.Text,
                 UserID = userID,
                 Price = Decimal.Parse(prodPrice.Text),
+                ProductStatusID = 1,
             };
             Entities._entities.ProductsImages.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
             Entities._entities.Products.Add(product);

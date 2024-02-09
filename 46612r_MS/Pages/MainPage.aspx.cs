@@ -17,28 +17,12 @@ namespace _46612r_MS.Pages
             {
                 Response.Redirect("LoginPage");
             }
-            string search = Request.Params.AllKeys.Any() ? Request.Params["search"] : "";
+            string search = Request.Params["search"] ?? "";
             LoadProducts(search);
-        }
-
-        protected void choose_photo_btn_Click(object sender, EventArgs e)
-        {
-            if (img_upload.HasFile)
-            {
-                int lenght = img_upload.PostedFile.ContentLength;
-                byte[] pic = new byte[lenght];
-                img_upload.PostedFile.InputStream.Read(pic, 0, lenght);
-                var images = Entities._entities.ProductsImages;
-                var products = Entities._entities.Products;
-                Products product = new Products() { UserID = (int)(Session["userID"] ?? 1), ProductName = "First Product", ProductDescription = "cool"};
-                images.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
-                Entities._entities.Products.Add(product);
-                Entities._entities.SaveChanges();
-            }
         }
         protected void LoadProducts(string search)
         {
-            foreach (var product in Entities._entities.Products)
+            foreach (var product in Entities._entities.Products.Where(p => p.ProductStatusID == 1 &&(search == "" || p.ProductName.ToLower().Contains(search.ToLower()) || p.ProductDescription.ToLower().Contains(search.ToLower()))))
             {
                 Panel name_desc = new Panel();
                 name_desc.Style.Add("margin-top", "10px");

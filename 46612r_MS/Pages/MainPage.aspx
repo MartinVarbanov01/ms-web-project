@@ -6,8 +6,6 @@
         .panel{
         }
     </style>
-    <asp:FileUpload ID="img_upload" runat="server" />
-    <asp:Button OnClick="choose_photo_btn_Click" Text="Okee" runat="server" />
     <asp:Panel CssClass="panel" ID="myPanel" runat="server"></asp:Panel>
     <script>
         function productClicked(prodID) {

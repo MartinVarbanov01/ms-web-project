@@ -9,6 +9,7 @@
     <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ProductDescription" Type="nvarchar" MaxLength="1500" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ProductStatusID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductsImages">
     <Key>
@@ -17,6 +18,13 @@
     <Property Name="IDImages" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Image" Type="image" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductStatus">
+    <Key>
+      <PropertyRef Name="IDProductStatus" />
+    </Key>
+    <Property Name="IDProductStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -55,6 +63,18 @@
       </Principal>
       <Dependent Role="Users">
         <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductStatus">
+    <End Role="ProductStatus" Type="Self.ProductStatus" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductStatus">
+        <PropertyRef Name="IDProductStatus" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductStatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -116,12 +136,17 @@
   <EntityContainer Name="ManagementModelStoreContainer">
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductsImages" EntityType="Self.ProductsImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductStatus" EntityType="Self.ProductStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Users__RoleID__3C69FB99" Association="Self.FK__Users__RoleID__3C69FB99">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductStatus" Association="Self.FK_Products_ProductStatus">
+      <End Role="ProductStatus" EntitySet="ProductStatus" />
+      <End Role="Products" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_Users" Association="Self.FK_Products_Users">
       <End Role="Users" EntitySet="Users" />
