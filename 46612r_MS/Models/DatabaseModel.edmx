@@ -4,15 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Management.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+      <Schema Namespace="ManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="IDProduct" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="ProductDescription" />
           </Key>
           <Property Name="IDProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -104,18 +99,10 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ManagementModelStoreContainer">
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Products].[IDProduct] AS [IDProduct], 
-    [Products].[UserID] AS [UserID], 
-    [Products].[ProductName] AS [ProductName], 
-    [Products].[ProductDescription] AS [ProductDescription], 
-    [Products].[Image] AS [Image]
-    FROM [dbo].[Products] AS [Products]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Users__RoleID__3C69FB99" Association="Self.FK__Users__RoleID__3C69FB99">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -125,10 +112,22 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="IDProduct" />
+          </Key>
+          <Property Name="IDProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Products_Users" FromRole="Products" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="IDRole" />
@@ -157,9 +156,21 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Users" FromRole="Users" ToRole="Products" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleID__3C69FB99" FromRole="Users" ToRole="Roles" />
-          <NavigationProperty Name="Products" Relationship="ManagementModel.FK_Products_Users" FromRole="Users" ToRole="Products" />
         </EntityType>
+        <Association Name="FK_Products_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Users__RoleID__3C69FB99">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -173,9 +184,14 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Products_Users" Association="Self.FK_Products_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK__Users__RoleID__3C69FB99" Association="Self.FK__Users__RoleID__3C69FB99">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -210,11 +226,6 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Products" EntityType="ManagementModel.Products" />
-          <AssociationSet Name="FK_Products_Users" Association="ManagementModel.FK_Products_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -227,38 +238,23 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Products">
-          <Key>
-            <PropertyRef Name="IDProduct" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="ProductDescription" />
-          </Key>
-          <Property Name="IDProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Users" Relationship="ManagementModel.FK_Products_Users" FromRole="Products" ToRole="Users" />
-        </EntityType>
-        <Association Name="FK_Products_Users">
-          <End Type="ManagementModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="ManagementModel.Products" Role="Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="IDUser" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ManagementModelStoreContainer" CdmEntityContainer="ManagementEntities">
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ManagementModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="ManagementModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
@@ -314,17 +310,6 @@ warning 6002: The table/view 'Management.dbo.Products' does not have a primary k
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ManagementModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ManagementModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="ManagementModel.Products">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
