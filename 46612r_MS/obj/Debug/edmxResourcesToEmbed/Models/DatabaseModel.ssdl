@@ -7,7 +7,7 @@
     <Property Name="IDProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ProductDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="1500" Nullable="false" />
     <Property Name="Image" Type="image" />
   </EntityType>
   <EntityType Name="Roles">
