@@ -11,70 +11,61 @@ namespace _46612r_MS.Pages
 {
 
 
-    public partial class LoginPageaspx
+    public partial class Items
     {
 
         /// <summary>
-        /// form1 control.
+        /// prodName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox prodName;
 
         /// <summary>
-        /// logo control.
+        /// prodDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image logo;
+        protected global::System.Web.UI.WebControls.TextBox prodDesc;
 
         /// <summary>
-        /// UserEmail control.
+        /// prodPic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserEmail;
+        protected global::System.Web.UI.WebControls.FileUpload prodPic;
 
         /// <summary>
-        /// UserPassword control.
+        /// prodPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserPassword;
+        protected global::System.Web.UI.WebControls.TextBox prodPrice;
 
         /// <summary>
-        /// wrong_pass control.
+        /// addProduct_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label wrong_pass;
+        protected global::System.Web.UI.WebControls.Button addProduct_btn;
 
         /// <summary>
-        /// Login_btn control.
+        /// myPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Login_btn;
-
-        /// <summary>
-        /// Register_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Register_btn;
+        protected global::System.Web.UI.WebControls.Panel myPanel;
     }
 }

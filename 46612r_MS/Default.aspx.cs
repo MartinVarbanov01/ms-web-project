@@ -18,7 +18,7 @@ namespace _46612r_MS
         private Users employee = new Users();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Redirect("~/Pages/MainPage");
+            Response.Redirect("~/Pages/MainPage");
         }
     }
 }

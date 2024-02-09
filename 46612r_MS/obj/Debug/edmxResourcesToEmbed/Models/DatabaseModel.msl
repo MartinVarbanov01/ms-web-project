@@ -8,7 +8,16 @@
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsImages">
+      <EntityTypeMapping TypeName="ManagementModel.ProductsImages">
+        <MappingFragment StoreEntitySet="ProductsImages">
+          <ScalarProperty Name="IDImages" ColumnName="IDImages" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

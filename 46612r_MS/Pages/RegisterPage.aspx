@@ -8,7 +8,8 @@
     <style>
         #logo {
             height: fit-content;
-            height: 350px;
+            height: 250px;
+            border-radius: 10px;    
         }
 
         .wrong_pass {
@@ -18,9 +19,10 @@
         .LogoHolder {
             text-align: center;
         }
-        #header{
-            font-size:larger;
-            font-weight:bold;
+
+        #header {
+            font-size: larger;
+            font-weight: bold;
         }
     </style>
 </head>

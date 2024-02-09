@@ -1,4 +1,5 @@
-﻿using _46612r_MS.Models;
+﻿using System;
+using _46612r_MS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -9,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace _46612r_MS.Pages
 {
-    public partial class MainPage : System.Web.UI.Page
+    public partial class Items : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,28 +18,8 @@ namespace _46612r_MS.Pages
             {
                 Response.Redirect("LoginPage");
             }
-            string search = Request.Params.AllKeys.Any() ? Request.Params["search"] : "";
-            LoadProducts(search);
-        }
-
-        protected void choose_photo_btn_Click(object sender, EventArgs e)
-        {
-            if (img_upload.HasFile)
-            {
-                int lenght = img_upload.PostedFile.ContentLength;
-                byte[] pic = new byte[lenght];
-                img_upload.PostedFile.InputStream.Read(pic, 0, lenght);
-                var images = Entities._entities.ProductsImages;
-                var products = Entities._entities.Products;
-                Products product = new Products() { UserID = (int)(Session["userID"] ?? 1), ProductName = "First Product", ProductDescription = "cool"};
-                images.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
-                Entities._entities.Products.Add(product);
-                Entities._entities.SaveChanges();
-            }
-        }
-        protected void LoadProducts(string search)
-        {
-            foreach (var product in Entities._entities.Products)
+            int userID = (int)Session["userID"];
+            foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products)
             {
                 Panel name_desc = new Panel();
                 name_desc.Style.Add("margin-top", "10px");
@@ -76,6 +57,29 @@ namespace _46612r_MS.Pages
                 myPanel.Controls.Add(img_nm);
                 myPanel.Controls.Add(lt);
             }
+        }
+
+        protected void addProduct_btn_Click(object sender, EventArgs e)
+        {
+            int userID = (int)Session["userID"];
+            if(prodName.Text == "" || prodDesc.Text == "" || !prodPic.HasFile || prodPrice.Text == "")
+            {
+                MessageBox.Show(this.Page, "Not all fields are filled!");
+                return;
+            }
+            int length = prodPic.PostedFile.ContentLength;
+            byte[] pic = new byte[length];
+            prodPic.PostedFile.InputStream.Read(pic, 0, length);
+            var product = new Products()
+            {
+                ProductName = prodName.Text,
+                ProductDescription = prodDesc.Text,
+                UserID = userID,
+                Price = Decimal.Parse(prodPrice.Text),
+            };
+            Entities._entities.ProductsImages.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
+            Entities._entities.Products.Add(product);
+            Entities._entities.SaveChanges();
         }
     }
 }

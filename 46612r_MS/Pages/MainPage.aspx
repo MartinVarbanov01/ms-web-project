@@ -9,7 +9,6 @@
     <asp:FileUpload ID="img_upload" runat="server" />
     <asp:Button OnClick="choose_photo_btn_Click" Text="Okee" runat="server" />
     <asp:Panel CssClass="panel" ID="myPanel" runat="server"></asp:Panel>
-    <asp:Button OnClick="AddTextBox" Text="text" runat="server" />
     <script>
         function productClicked(prodID) {
             IDProd = prodID.replace('MainContent_', '');

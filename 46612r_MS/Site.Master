@@ -37,6 +37,10 @@
             height:50px;
             border-radius: 0 5px 5px 0px;
             background-color:orange;
+            transition:0.5s;
+        }
+        #search_btn:hover{
+            background-color:#ffd280;
         }
         #profile_btn{
             height:50px;
@@ -44,7 +48,13 @@
             border-radius:5px;
             background-color:#131921;
             border-color:white;
-            color:white
+            color:white;
+            transition:0.5s;
+        }
+        #profile_btn:hover{
+            background-color:white;
+            color:#131921;
+            border-color:black;
         }
     </style>
 </head>

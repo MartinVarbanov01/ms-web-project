@@ -19,8 +19,8 @@ namespace _46612r_MS.Pages
         protected void Login_btn_Click(object sender, EventArgs e)
         {
             var user = Entities._entities.Users.FirstOrDefault(p =>
-            (p.Username == Username.Text || p.Email == Username.Text)
-            && p.Password == Password.Text
+            p.Email == UserEmail.Text
+            && p.Password == UserPassword.Text
             );
             if(user == null)
             {

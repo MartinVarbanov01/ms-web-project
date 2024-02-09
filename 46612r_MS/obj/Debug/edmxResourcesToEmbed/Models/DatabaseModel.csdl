@@ -8,8 +8,18 @@
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ProductDescription" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_Products_Users" FromRole="Products" ToRole="Users" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="ProductsImages" Relationship="Self.FK_ProductsImages_Products" FromRole="Products" ToRole="ProductsImages" />
+    <NavigationProperty Name="Users" Relationship="ManagementModel.FK_Products_Users" FromRole="Products" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProductsImages">
+    <Key>
+      <PropertyRef Name="IDImages" />
+    </Key>
+    <Property Name="IDImages" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductsImages_Products" FromRole="ProductsImages" ToRole="Products" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -38,19 +48,19 @@
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="RoleID" Type="Int32" Nullable="false" />
-    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Users" FromRole="Users" ToRole="Products" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleID__3C69FB99" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Products" Relationship="ManagementModel.FK_Products_Users" FromRole="Users" ToRole="Products" />
   </EntityType>
-  <Association Name="FK_Products_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+  <Association Name="FK_ProductsImages_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductsImages" Type="Self.ProductsImages" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="IDUser" />
+      <Principal Role="Products">
+        <PropertyRef Name="IDProduct" />
       </Principal>
-      <Dependent Role="Products">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="ProductsImages">
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -68,12 +78,13 @@
   </Association>
   <EntityContainer Name="ManagementEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="ProductsImages" EntityType="Self.ProductsImages" />
     <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Users" EntityType="Self.Users" />
-    <AssociationSet Name="FK_Products_Users" Association="Self.FK_Products_Users">
-      <End Role="Users" EntitySet="Users" />
+    <AssociationSet Name="FK_ProductsImages_Products" Association="Self.FK_ProductsImages_Products">
       <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsImages" EntitySet="ProductsImages" />
     </AssociationSet>
     <AssociationSet Name="FK__Users__RoleID__3C69FB99" Association="Self.FK__Users__RoleID__3C69FB99">
       <End Role="Roles" EntitySet="Roles" />
@@ -109,6 +120,10 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_Products_Users" Association="ManagementModel.FK_Products_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -121,4 +136,16 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <Association Name="FK_Products_Users">
+    <End Type="ManagementModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="ManagementModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

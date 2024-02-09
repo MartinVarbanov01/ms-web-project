@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1cb1b0bc3133404e99ce4b5bae3ad083" Name="Diagram1">
-        <EntityTypeShape EntityType="ManagementModel.Products" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="d0371a210698472cba6912a835faeada" Name="Diagram1">
+        <EntityTypeShape EntityType="ManagementModel.Products" Width="1.5" PointX="0.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManagementModel.ProductsImages" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementModel.Roles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ManagementModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManagementModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="ManagementModel.FK_Products_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ManagementModel.FK_ProductsImages_Products" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementModel.FK__Users__RoleID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="ManagementModel.FK_Products_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

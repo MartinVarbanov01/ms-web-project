@@ -8,7 +8,15 @@
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ProductDescription" Type="nvarchar" MaxLength="1500" Nullable="false" />
-    <Property Name="Image" Type="image" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductsImages">
+    <Key>
+      <PropertyRef Name="IDImages" />
+    </Key>
+    <Property Name="IDImages" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -36,7 +44,7 @@
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
-    <Property Name="Photo" Type="image" />
+    <Property Name="Photo" Type="image" Nullable="false" />
   </EntityType>
   <Association Name="FK__Users__RoleID__3C69FB99">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -59,6 +67,18 @@
       </Principal>
       <Dependent Role="Products">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsImages_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductsImages" Type="Self.ProductsImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IDProduct" />
+      </Principal>
+      <Dependent Role="ProductsImages">
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -95,6 +115,7 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="ManagementModelStoreContainer">
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductsImages" EntityType="Self.ProductsImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -105,6 +126,10 @@
     <AssociationSet Name="FK_Products_Users" Association="Self.FK_Products_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsImages_Products" Association="Self.FK_ProductsImages_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsImages" EntitySet="ProductsImages" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

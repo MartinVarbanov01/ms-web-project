@@ -8,7 +8,8 @@
     <style>
         #logo {
             height: fit-content;
-            height: 350px;
+            height: 250px;
+            border-radius:10px;
         }
 
         #wrong_pass {
@@ -25,13 +26,13 @@
         <div class="LogoHolder">
             <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
             <p>&nbsp;</p>
-            <asp:Label Text="Username / Email" runat="server" />
+            <asp:Label Text="Email" runat="server" />
             <p></p>
-            <asp:TextBox ID="Username" runat="server" />
+            <asp:TextBox ID="UserEmail" runat="server" />
             <p>&nbsp;</p>
             <asp:Label Text="Password" runat="server" />
             <p></p>
-            <asp:TextBox TextMode="Password" ID="Password" runat="server" /><p></p>
+            <asp:TextBox TextMode="Password" ID="UserPassword" runat="server" /><p></p>
             <asp:Label ID="wrong_pass" Visible="false" Text="Wrong password or username or both who knows!" runat="server" /><p></p>
             <asp:Button ID="Login_btn" OnClick="Login_btn_Click" Text="Login" runat="server" />
             <asp:Button ID="Register_btn" OnClick="Register_btn_Click" Text="Register" runat="server" />

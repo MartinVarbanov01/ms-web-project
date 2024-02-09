@@ -161,6 +161,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\default-profile-icon.jpg" />
     <Content Include="Images\image0_0.jpg" />
     <Content Include="Images\image1_0.jpg" />
     <Content Include="Images\logo.png" />
@@ -175,6 +176,7 @@
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Pages\Items.aspx" />
     <Content Include="Pages\LoginPage.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Profile.aspx" />
@@ -295,6 +297,9 @@
     <Compile Include="Models\Products.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductsImages.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -309,6 +314,13 @@
     </Compile>
     <Compile Include="Models\Users.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Items.aspx.cs">
+      <DependentUpon>Items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Items.aspx.designer.cs">
+      <DependentUpon>Items.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
