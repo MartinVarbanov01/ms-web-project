@@ -29,6 +29,7 @@
     <Property Name="RoleID" Type="Int32" Nullable="false" />
     <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleID__3C69FB99" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Products" Relationship="ManagementModel.FK_Products_Users" FromRole="Users" ToRole="Products" />
   </EntityType>
   <Association Name="FK__Users__RoleID__3C69FB99">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -80,6 +81,11 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Products" EntityType="ManagementModel.Products" />
+    <AssociationSet Name="FK_Products_Users" Association="ManagementModel.FK_Products_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -92,4 +98,30 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="IDProduct" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductDescription" />
+    </Key>
+    <Property Name="IDProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="ManagementModel.FK_Products_Users" FromRole="Products" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Products_Users">
+    <End Type="ManagementModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="ManagementModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
