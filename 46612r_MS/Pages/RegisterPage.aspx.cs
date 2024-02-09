@@ -44,5 +44,10 @@ namespace _46612r_MS.Pages
                 MessageBox.Show(Page, "This User already exists");
             }
         }
+
+        protected void login_btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/LoginPage");
+        }
     }
 }

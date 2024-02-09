@@ -9,7 +9,7 @@
         #logo {
             height: fit-content;
             height: 250px;
-            border-radius:10px;
+            border-radius: 10px;
         }
 
         #wrong_pass {
@@ -18,6 +18,26 @@
 
         .LogoHolder {
             text-align: center;
+        }
+
+        .borderRadius {
+            border-radius: 10px;
+            height: 40px;
+        }
+
+        .buttons {
+            background-color: orange;
+            width: 120px;
+            transition: 0.3s;
+        }
+
+            .buttons:hover {
+                background-color: #ffb937;
+            }
+
+        .link {
+            color: black;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -28,14 +48,14 @@
             <p>&nbsp;</p>
             <asp:Label Text="Email" runat="server" />
             <p></p>
-            <asp:TextBox ID="UserEmail" runat="server" />
-            <p>&nbsp;</p>
+            <asp:TextBox CssClass="borderRadius" ID="UserEmail" runat="server" />
+            <p></p>
             <asp:Label Text="Password" runat="server" />
             <p></p>
-            <asp:TextBox TextMode="Password" ID="UserPassword" runat="server" /><p></p>
+            <asp:TextBox CssClass="borderRadius" TextMode="Password" ID="UserPassword" runat="server" /><p></p>
             <asp:Label ID="wrong_pass" Visible="false" Text="Wrong password or username or both who knows!" runat="server" /><p></p>
-            <asp:Button ID="Login_btn" OnClick="Login_btn_Click" Text="Login" runat="server" />
-            <asp:Button ID="Register_btn" OnClick="Register_btn_Click" Text="Register" runat="server" />
+            <asp:Button CssClass="borderRadius buttons" ID="Login_btn" OnClick="Login_btn_Click" Text="Login" runat="server" /><p></p>
+            <asp:LinkButton OnClick="Register_btn_Click" CssClass="link" Text="Don't have and account? <b>Register Here</b>" runat="server" />
         </div>
     </form>
 </body>
