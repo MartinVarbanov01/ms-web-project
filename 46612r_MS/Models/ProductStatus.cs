@@ -12,24 +12,18 @@ namespace _46612r_MS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Products
+    public partial class ProductStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
+        public ProductStatus()
         {
-            this.ProductsImages = new HashSet<ProductsImages>();
+            this.Products = new HashSet<Products>();
         }
     
-        public int IDProduct { get; set; }
-        public int UserID { get; set; }
-        public string ProductName { get; set; }
-        public string ProductDescription { get; set; }
-        public decimal Price { get; set; }
-        public int ProductStatusID { get; set; }
+        public int IDProductStatus { get; set; }
+        public string ProductStatus1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsImages> ProductsImages { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual ProductStatus ProductStatus { get; set; }
+        public virtual ICollection<Products> Products { get; set; }
     }
 }

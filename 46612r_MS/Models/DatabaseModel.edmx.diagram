@@ -13,6 +13,8 @@
         <AssociationConnector Association="ManagementModel.FK_ProductsImages_Products" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementModel.FK__Users__RoleID__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementModel.FK_Products_Users" />
+        <EntityTypeShape EntityType="ManagementModel.ProductStatus" Width="1.5" PointX="5.375" PointY="3.875" />
+        <AssociationConnector Association="ManagementModel.FK_Products_ProductStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

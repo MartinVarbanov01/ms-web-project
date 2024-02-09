@@ -300,6 +300,9 @@
     <Compile Include="Models\ProductsImages.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductStatus.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
