@@ -21,40 +21,9 @@ namespace _46612r_MS.Pages
             int userID = (int)Session["userID"];
             foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products.Where(p => p.ProductStatusID == 1))
             {
-                Panel name_desc = new Panel();
-                name_desc.Style.Add("margin-top", "10px");
-                Panel img_nm = new Panel();
-                img_nm.ID = product.IDProduct.ToString();
-                img_nm.Style.Add("display", "flex");
-                img_nm.Style.Add("margin", "auto");
-                img_nm.Style.Add("width", "50%");
-                img_nm.Style.Add("min-height", "220px");
-                img_nm.Style.Add("Border", "solid 2px");
-                img_nm.Style.Add("border-radius", "5px");
-                img_nm.Attributes.Add("onclick", "productClicked(this.id)");
-                Image img = new Image();
-                img.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(product.ProductsImages.FirstOrDefault().Image);
-                img.Style.Add("width", "200px");
-                img.Style.Add("height", "200px");
-                img.Style.Add("border-radius", "5px");
-                img.Style.Add("margin", "10px 5px 10px 10px");
-                Label prodName = new Label();
-                prodName.Text = product.ProductName;
-                prodName.Style.Add("font-size", "22px");
-                prodName.Style.Add("font-width", "bold");
-                prodName.Style.Add("border", "none");
-                Label prodDesc = new Label();
-                prodDesc.Text = product.ProductDescription;
                 Literal lt = new Literal();
                 lt.Text = "<br />";
-                Literal lt1 = new Literal();
-                lt1.Text = "<br />";
-                img_nm.Controls.Add(img);
-                name_desc.Controls.Add(prodName);
-                name_desc.Controls.Add(lt1);
-                name_desc.Controls.Add(prodDesc);
-                img_nm.Controls.Add(name_desc);
-                myPanel.Controls.Add(img_nm);
+                myPanel.Controls.Add(Entities.GetProductFromDB(product));
                 myPanel.Controls.Add(lt);
             }
         }
@@ -81,6 +50,9 @@ namespace _46612r_MS.Pages
             Entities._entities.ProductsImages.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
             Entities._entities.Products.Add(product);
             Entities._entities.SaveChanges();
+            prodName.Text = string.Empty;
+            prodDesc.Text = string.Empty;
+            prodPrice.Text = string.Empty;
         }
     }
 }

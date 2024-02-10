@@ -35,7 +35,7 @@
         }
 
             .buttons:hover {
-                background-color: #ffb937;
+                background-color: #ffd280;
             }
     </style>
     <asp:Panel CssClass="new" runat="server">
@@ -63,9 +63,29 @@
     </asp:Panel>
     <asp:Panel ID="myPanel" runat="server"></asp:Panel>
     <script>
+        var img = document.getElementsByClassName("imageProd");
+        img.forEach(Resize)
+        function Resize(img) {
+            var imgRation = img.style.height / img.style.width;
+            if (img.style.width > img.style.height) {
+                img.style.width = "200px";
+                img.style.height = (200 * imgRation).toString() + "px";
+            }
+            else {
+                img.style.height = "200px";
+                img.style.width = (200 / imgRation).toString() + "px";
+            }
+        }
         function productClicked(prodID) {
             IDProd = prodID.replace('MainContent_', '');
-            alert(IDProd);
+            $.ajax({
+                url: 'ProductPage',
+                type: "POST",
+                data: { "prodID": IDProd },
+                success: function (page) {
+                    window.location.href = "ProductPage?prodID=" + IDProd;
+                }
+            });
         }
     </script>
 </asp:Content>

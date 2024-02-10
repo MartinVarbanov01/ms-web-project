@@ -179,6 +179,7 @@
     <Content Include="Pages\Items.aspx" />
     <Content Include="Pages\LoginPage.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\ProductPage.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\RegisterPage.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -338,6 +339,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

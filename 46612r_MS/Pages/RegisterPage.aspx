@@ -37,7 +37,7 @@
         }
 
             .buttons:hover {
-                background-color: #ffb937;
+                background-color: #ffd280;
             }
 
         .link {
