@@ -214,14 +214,14 @@
         function ResizeMainImg(imgSize) {
             var size = 465;
             var imgRation = imgSize.height / imgSize.width;
-            imgSize.width = size;
-            imgSize.height = size * imgRation;
+            imgSize.style.width = size + "px";
+            imgSize.style.height = size * imgRation + "px";
         }
         function Resize(imgSize) {
             var size = 150;
             var imgRation = imgSize.height / imgSize.width;
-            imgSize.width = size;
-            imgSize.height = size * imgRation;
+            imgSize.style.width = size + "px";
+            imgSize.style.height = size * imgRation + "px";
         }
         ResizeImages();
         //#endregion
