@@ -27,9 +27,9 @@ namespace _46612r_MS.Models
         public decimal Price { get; set; }
         public int ProductStatusID { get; set; }
     
+        public virtual ProductStatus ProductStatus { get; set; }
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductsImages> ProductsImages { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual ProductStatus ProductStatus { get; set; }
     }
 }

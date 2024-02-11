@@ -75,20 +75,20 @@ namespace _46612r_MS.Pages
                     prodImg1.Visible = true;
                     prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
                 }
-                if (product.ProductsImages.ToList().Count > 1)
+                if (product.ProductsImages.ToList().Count > 0)
                 {
                     prodImg2.Visible = true;
-                    prodImg2.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[1].Image);
+                    prodImg2.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
+                }
+                if (product.ProductsImages.ToList().Count > 1)
+                {
+                    prodImg3.Visible = true;
+                    prodImg3.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[1].Image);
                 }
                 if (product.ProductsImages.ToList().Count > 2)
                 {
-                    prodImg3.Visible = true;
-                    prodImg3.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[2].Image);
-                }
-                if (product.ProductsImages.ToList().Count > 3)
-                {
                     prodImg4.Visible = true;
-                    prodImg4.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[3].Image);
+                    prodImg4.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[2].Image);
                 }
                 prodName.Text = product.ProductName;
                 prodDesc.Text = product.ProductDescription;

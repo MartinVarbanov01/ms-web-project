@@ -29,10 +29,10 @@ namespace _46612r_MS.Models
     
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsImages> ProductsImages { get; set; }
+        public virtual DbSet<ProductStatus> ProductStatus { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<ProductStatus> ProductStatus { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

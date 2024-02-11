@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing.Printing;
 
 namespace _46612r_MS.Pages
 {
@@ -49,16 +50,18 @@ namespace _46612r_MS.Pages
             int length = prodPic.PostedFile.ContentLength;
             byte[] pic = new byte[length];
             prodPic.PostedFile.InputStream.Read(pic, 0, length);
+            decimal price = Decimal.Parse(prodPrice.Text);
             var product = new Products()
             {
+                UserID = userID,
                 ProductName = prodName.Text,
                 ProductDescription = prodDesc.Text,
-                UserID = userID,
-                Price = Decimal.Parse(prodPrice.Text),
+                Price = price,
                 ProductStatusID = 1,
             };
-            Entities._entities.ProductsImages.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
             Entities._entities.Products.Add(product);
+            Entities._entities.SaveChanges();
+            Entities._entities.ProductsImages.Add(new ProductsImages() { Image = pic, ProductID = product.IDProduct });
             Entities._entities.SaveChanges();
             prodName.Text = string.Empty;
             prodDesc.Text = string.Empty;

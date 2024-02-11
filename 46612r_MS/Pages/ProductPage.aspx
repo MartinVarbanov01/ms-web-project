@@ -233,9 +233,7 @@
         }
         function ImgClicked() {
             var mainImg = document.getElementById("MainContent_prodImg1");
-            var url = this.src;
-            this.src = mainImg.src;
-            mainImg.src = url;
+            mainImg.src = this.src;
         }
     </script>
 </asp:Content>
