@@ -56,12 +56,13 @@ namespace _46612r_MS.Pages
             }
             else if (user.RoleID == 1)
             {
+                editPanel.Visible = true;
                 if (product.ProductStatusID == 1)
                 {
                     suspdenProd_btn.Visible = true;
-                    unSuspendProd_btn.Visible=false;
+                    unSuspendProd_btn.Visible = false;
                 }
-                else if(product.ProductStatusID == 2)
+                else if (product.ProductStatusID == 2)
                 {
                     suspdenProd_btn.Visible = false;
                     unSuspendProd_btn.Visible = true;
@@ -79,14 +80,11 @@ namespace _46612r_MS.Pages
             prodDesc.Text = product.ProductDescription;
             prodPrice.Text = product.Price.ToString() + " лв.  ";
         }
-
-        protected void prodImg1_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
         private void AllowEdit()
         {
+            editPanel.Visible = true;
             deleteProd_btn.Visible = true;
+            editProd_btn.Visible = true;
         }
 
         protected void suspdenProd_btn_Click(object sender, EventArgs e)
@@ -119,6 +117,35 @@ namespace _46612r_MS.Pages
             int prodID = Int32.Parse(Request.Params["prodID"]);
             Products product = Entities._entities.Products.FirstOrDefault(p => p.IDProduct == prodID);
             product.ProductStatusID = 1;
+            Entities._entities.SaveChanges();
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void editProd_btn_Click(object sender, EventArgs e)
+        {
+            saveChanges_btn.Visible = true;
+            photoUpload_lbl.Visible = true;
+            pic_uploader.Visible = true;
+            prodPrice.ReadOnly = false;
+            prodName.ReadOnly = false;
+            prodDesc.ReadOnly = false;
+        }
+
+        protected void saveChanges_btn_Click(object sender, EventArgs e)
+        {
+            int prodID = Int32.Parse(Request.Params["prodID"]);
+            Products product = Entities._entities.Products.FirstOrDefault(u => u.IDProduct == prodID);
+            product.ProductName = prodName.Text;
+            product.ProductDescription = prodDesc.Text;
+            product.Price = decimal.Parse(prodPrice.Text.Split(' ').ToList()[0]);
+            if (pic_uploader.HasFile)
+            {
+                var length = pic_uploader.PostedFile.ContentLength;
+                byte[] pic = new byte[length];
+                pic_uploader.PostedFile.InputStream.Read(pic, 0, length);
+                ProductsImages images = new ProductsImages() { ProductID = product.IDProduct, Image=pic};
+                product.ProductsImages.Add(images);
+            }
             Entities._entities.SaveChanges();
             Response.Redirect(Request.RawUrl);
         }

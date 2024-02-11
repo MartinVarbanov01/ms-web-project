@@ -101,8 +101,8 @@
             height: 40px;
         }
 
-        .buttons {
-            margin-top: 10px;
+        .red {
+            margin: 10px;
             background-color: red;
             color: white;
             font-weight: bold;
@@ -111,19 +111,19 @@
             transition: 0.3s;
         }
 
-            .buttons:hover {
+            .red:hover {
                 background-color: #000000;
                 border-color: red;
             }
 
         .suspended {
-            color:red;
+            color: red;
         }
+
         .black {
-            margin-top: 10px;
+            margin: 10px;
             width: fit-content;
             font-weight: bold;
-            font-size: 20px;
             background-color: black;
             color: white;
             transition: 0.3s;
@@ -131,15 +131,46 @@
 
             .black:hover {
                 background-color: white;
-                color:black;
+                color: black;
             }
+
+        .buttons {
+            background-color: orange;
+            width: 120px;
+            transition: 0.3s;
+        }
+
+            .buttons:hover {
+                background-color: #ffd280;
+            }
+
+        .left {
+            text-align: left;
+        }
+        .right{
+            width:100%;
+            text-align:right;
+            vertical-align:middle;
+        }
+
+        .margin-top {
+            margin-top:5px
+        }
+        .center{
+            margin: 10px;
+        }
+        .text{
+            font-weight:bold;
+            font-size:20px;
+            margin: auto
+        }
     </style>
     <asp:Label ID="suspendedProd_lbl" CssClass="suspended" Visible="false" Text="<h1>Product Is Suspended</h1>" runat="server" />
     <asp:Panel CssClass="mainPanel" ID="mainPanel" runat="server">
         <asp:Panel CssClass="prodGallery" runat="server">
-            <asp:ImageButton CssClass="mainImage" OnClick="prodImg1_Click" ID="prodImg1" ImageUrl="/Images/default-product.png" runat="server" />
+            <asp:Image CssClass="mainImage" ID="prodImg1" ImageUrl="/Images/default-product.png" runat="server" />
             <asp:Panel CssClass="imagesPanel" runat="server">
-                <asp:ImageButton CssClass="images" OnClick="prodImg1_Click" ID="prodImg2" ImageUrl="/Images/default-product.png" runat="server" /><asp:ImageButton CssClass="images" OnClick="prodImg1_Click" ID="prodImg3" ImageUrl="/Images/default-product.png" runat="server" /><asp:ImageButton CssClass="images" OnClick="prodImg1_Click" ID="prodImg4" ImageUrl="/Images/default-product.png" runat="server" />
+                <asp:Image CssClass="images" ID="prodImg2" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" ID="prodImg3" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" ID="prodImg4" ImageUrl="/Images/default-product.png" runat="server" />
             </asp:Panel>
         </asp:Panel>
         <asp:Panel CssClass="infoBorder" runat="server">
@@ -148,15 +179,25 @@
                     <asp:TextBox ID="prodPrice" CssClass="textBox price_lbl" ReadOnly="true" runat="server" /><p></p>
                 </asp:Panel>
                 <asp:Panel CssClass="fill-space" runat="server">
-                    <asp:TextBox ID="prodName" CssClass="textBox title" ReadOnly="true" runat="server" Text="<h1>asd<h1/>" /><p></p>
+                    <asp:TextBox ID="prodName" CssClass="textBox title" ReadOnly="true" runat="server" /><p></p>
                     <asp:TextBox ID="prodDesc" CssClass="textBox textArea" Wrap="true" TextMode="MultiLine" ReadOnly="true" runat="server" /><p></p>
                 </asp:Panel>
             </asp:Panel>
         </asp:Panel>
     </asp:Panel>
-    <asp:Button OnClick="suspdenProd_btn_Click" Visible="false" CssClass="borderRadius buttons" ID="suspdenProd_btn" Text="Suspend Product" runat="server" />
-    <asp:Button OnClick="unSuspendProd_btn_Click" Visible="false" CssClass="borderRadius black" ID="unSuspendProd_btn" Text="Unsuspend Product" runat="server" />
-    <asp:Button OnClick="deleteProd_btn_Click" Visible="false" CssClass="borderRadius buttons" ID="deleteProd_btn" Text="Delete Product" runat="server" />
+    <asp:Panel ID="editPanel" Visible="false" CssClass="mainPanel margin-top" runat="server">
+        <asp:Panel CssClass="left" runat="server">
+            <asp:Button OnClick="suspdenProd_btn_Click" Visible="false" CssClass="borderRadius red" ID="suspdenProd_btn" Text="Suspend Product" runat="server" />
+            <asp:Button OnClick="unSuspendProd_btn_Click" Visible="false" CssClass="borderRadius black" ID="unSuspendProd_btn" Text="Unsuspend Product" runat="server" />
+            <asp:Button OnClick="deleteProd_btn_Click" Visible="false" CssClass="borderRadius red" ID="deleteProd_btn" Text="Delete Product" runat="server" />
+        </asp:Panel>
+        <asp:Panel CssClass="right" runat="server">
+            <asp:Label Visible="false" CssClass="center text" ID="photoUpload_lbl" Text="Upload Photo" runat="server" />
+            <asp:FileUpload CssClass="center" Visible="false" ID="pic_uploader" runat="server"/>
+            <asp:Button Visible="false" CssClass="borderRadius buttons center" OnClick="editProd_btn_Click" ID="editProd_btn" Text="Edit Product" runat="server" />
+            <asp:Button Visible="false" CssClass="borderRadius buttons center" OnClick="saveChanges_btn_Click" ID="saveChanges_btn" Text="Save Changes" runat="server" />
+        </asp:Panel>
+    </asp:Panel>
     <asp:Label ID="prodNotFound_lbl" Visible="false" Text="<h1>Error product not found!</h1>" runat="server" />
     <script>
         //#region imagesResizing
@@ -186,5 +227,15 @@
         //#endregion
         price_tb = document.getElementById("MainContent_prodPrice");
         price_tb.style.width = (price_tb.value.length - 2) + 'ch';
+        var smallImg = document.getElementsByClassName("images");
+        for (let i = 0; i < smallImg.length; i++) {
+            smallImg[i].addEventListener("click", ImgClicked);
+        }
+        function ImgClicked() {
+            var mainImg = document.getElementById("MainContent_prodImg1");
+            var url = this.src;
+            this.src = mainImg.src;
+            mainImg.src = url;
+        }
     </script>
 </asp:Content>

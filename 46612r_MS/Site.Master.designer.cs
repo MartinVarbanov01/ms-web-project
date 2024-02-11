@@ -21,7 +21,7 @@ namespace _46612r_MS
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image logo;
+        protected global::System.Web.UI.WebControls.ImageButton logo;
 
         /// <summary>
         /// search_items control.

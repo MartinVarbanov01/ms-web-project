@@ -39,7 +39,7 @@ namespace _46612r_MS.Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton prodImg1;
+        protected global::System.Web.UI.WebControls.Image prodImg1;
 
         /// <summary>
         /// prodImg2 control.
@@ -48,7 +48,7 @@ namespace _46612r_MS.Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton prodImg2;
+        protected global::System.Web.UI.WebControls.Image prodImg2;
 
         /// <summary>
         /// prodImg3 control.
@@ -57,7 +57,7 @@ namespace _46612r_MS.Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton prodImg3;
+        protected global::System.Web.UI.WebControls.Image prodImg3;
 
         /// <summary>
         /// prodImg4 control.
@@ -66,7 +66,7 @@ namespace _46612r_MS.Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton prodImg4;
+        protected global::System.Web.UI.WebControls.Image prodImg4;
 
         /// <summary>
         /// prodPrice control.
@@ -96,6 +96,15 @@ namespace _46612r_MS.Pages
         protected global::System.Web.UI.WebControls.TextBox prodDesc;
 
         /// <summary>
+        /// editPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel editPanel;
+
+        /// <summary>
         /// suspdenProd_btn control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,42 @@ namespace _46612r_MS.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button deleteProd_btn;
+
+        /// <summary>
+        /// photoUpload_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label photoUpload_lbl;
+
+        /// <summary>
+        /// pic_uploader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload pic_uploader;
+
+        /// <summary>
+        /// editProd_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editProd_btn;
+
+        /// <summary>
+        /// saveChanges_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveChanges_btn;
 
         /// <summary>
         /// prodNotFound_lbl control.

@@ -55,5 +55,10 @@ namespace _46612r_MS
         {
             Response.Redirect("~/Pages/AdminPage");
         }
+
+        protected void logo_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/Pages/MainPage");
+        }
     }
 }

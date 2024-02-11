@@ -100,7 +100,7 @@
         <table>
             <tr>
                 <td style="width: 0px;">
-                    <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
+                    <asp:ImageButton OnClick="logo_Click" ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
                 </td>
                 <td style="text-align: center;">
                     <asp:TextBox OnTextChanged="search_items_TextChanged" ID="search_items" Text="Search Alazomn" runat="server" />
