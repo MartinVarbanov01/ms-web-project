@@ -2,11 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        table {
+        .gv {
             background-color: white;
         }
     </style>
-    <asp:GridView OnRowDataBound="users_RowDataBound" AutoGenerateColumns="false" ID="users" runat="server">
+    <asp:GridView CssClass="gv" OnRowDataBound="users_RowDataBound" AutoGenerateColumns="false" ID="users" runat="server">
         <Columns>
             <asp:BoundField DataField="IDUser" HeaderText="ID" />
             <asp:ImageField DataImageUrlField="Photo" DataImageUrlFormatString="{0}" HeaderText="Profile Picture" />

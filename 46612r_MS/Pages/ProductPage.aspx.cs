@@ -24,6 +24,7 @@ namespace _46612r_MS.Pages
             {
                 mainPanel.Visible = false;
                 suspdenProd_btn.Visible = false;
+                unSuspendProd_btn.Visible = false;
                 deleteProd_btn.Visible = false;
                 prodNotFound_lbl.Visible = true;
                 return;
@@ -34,13 +35,14 @@ namespace _46612r_MS.Pages
             {
                 mainPanel.Visible = false;
                 suspdenProd_btn.Visible = false;
+                unSuspendProd_btn.Visible = false;
                 deleteProd_btn.Visible = false;
                 prodNotFound_lbl.Visible = true;
                 return;
             }
             if (product.ProductStatusID == 2)
             {
-                if (userID != product.UserID)
+                if (userID != product.UserID && user.RoleID != 1)
                 {
                     mainPanel.Visible = false;
                     prodNotFound_lbl.Visible = true;
@@ -54,7 +56,16 @@ namespace _46612r_MS.Pages
             }
             else if (user.RoleID == 1)
             {
-                suspdenProd_btn.Visible = true;
+                if (product.ProductStatusID == 1)
+                {
+                    suspdenProd_btn.Visible = true;
+                    unSuspendProd_btn.Visible=false;
+                }
+                else if(product.ProductStatusID == 2)
+                {
+                    suspdenProd_btn.Visible = false;
+                    unSuspendProd_btn.Visible = true;
+                }
             }
             if (product.ProductsImages.ToList().Count > 0)
                 prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
@@ -84,7 +95,7 @@ namespace _46612r_MS.Pages
             Products product = Entities._entities.Products.FirstOrDefault(p => p.IDProduct == prodID);
             product.ProductStatusID = 2;
             Entities._entities.SaveChanges();
-            Response.Redirect("~/Pages/MainPage");
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void deleteProd_btn_Click(object sender, EventArgs e)
@@ -101,6 +112,15 @@ namespace _46612r_MS.Pages
             }
             Entities._entities.SaveChanges();
             Response.Redirect("~/Pages/MainPage");
+        }
+
+        protected void unSuspendProd_btn_Click(object sender, EventArgs e)
+        {
+            int prodID = Int32.Parse(Request.Params["prodID"]);
+            Products product = Entities._entities.Products.FirstOrDefault(p => p.IDProduct == prodID);
+            product.ProductStatusID = 1;
+            Entities._entities.SaveChanges();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

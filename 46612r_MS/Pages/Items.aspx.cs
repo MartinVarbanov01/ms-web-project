@@ -19,6 +19,15 @@ namespace _46612r_MS.Pages
                 Response.Redirect("~/Pages/LoginPage");
             }
             int userID = (int)Session["userID"];
+            Users User = Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID);
+            if(User.RoleID == 1 && Request.Params.AllKeys.Any(k => k == "userID"))
+            {
+                try
+                {
+                    userID = Int32.Parse(Request.Params["userID"]);
+                }
+                catch { Response.Redirect("~/Pages/MainPage"); }
+            }
             foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products.Where(p => p.ProductStatusID == 1 || p.ProductStatusID == 2))
             {
                 Literal lt = new Literal();

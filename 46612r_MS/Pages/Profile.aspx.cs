@@ -11,6 +11,7 @@ namespace _46612r_MS.Pages
 {
     public partial class Profile : System.Web.UI.Page
     {
+        Users usersGlobal = new Users();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["userID"] == null)
@@ -18,8 +19,8 @@ namespace _46612r_MS.Pages
                 Response.Redirect("~/Pages/LoginPage");
             }
             int userID = (int)Session["userID"];
-            Users users = GetUser();
-            LoadProfile(users, userID != users.IDUser);
+            usersGlobal = GetUser();
+            LoadProfile(usersGlobal, userID != usersGlobal.IDUser);
         }
 
         protected void editProfile_Click(object sender, EventArgs e)
@@ -46,15 +47,15 @@ namespace _46612r_MS.Pages
                 UserProf.Photo = pic;
                 Entities._entities.SaveChanges();
             }
-            if(profilePassNew.Text != "")
+            if (profilePassNew.Text != "")
             {
-                if(profilePassNew.Text != profilePassNew2.Text)
+                if (profilePassNew.Text != profilePassNew2.Text)
                 {
                     error.Visible = true;
                     error.Text = "New passwords don't match!";
                     return;
                 }
-                if(profilePassOld.Text != UserProf.Password)
+                if (profilePassOld.Text != UserProf.Password)
                 {
                     error.Visible = true;
                     error.Text = "Incorrect old password!";
@@ -71,7 +72,7 @@ namespace _46612r_MS.Pages
 
         protected void myProd_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/Items");
+            Response.Redirect("~/Pages/Items?userID=" + usersGlobal.IDUser);
         }
         private void LoadProfile(Users users, bool isAdmin)
         {
@@ -82,11 +83,21 @@ namespace _46612r_MS.Pages
             profileUsername.Text = users.Username;
             profileEmail.Text = users.Email;
             SuspendUser_btn.Visible = false;
+            unSuspendUser_btn.Visible = false;
             if (isAdmin)
             {
                 editProfile.Visible = false;
                 deleteUser_btn.Visible = false;
-                SuspendUser_btn.Visible = true;
+                if (users.RoleID != 3)
+                {
+                    SuspendUser_btn.Visible = true;
+                    unSuspendUser_btn.Visible = false;
+                }
+                else
+                {
+                    SuspendUser_btn.Visible = false;
+                    unSuspendUser_btn.Visible = true;
+                }
             }
         }
         private Users GetUser()
@@ -114,6 +125,15 @@ namespace _46612r_MS.Pages
             int userID = Int32.Parse(Request.Params["userID"]);
             Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).RoleID = 3;
             Entities._entities.SaveChanges();
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void unSuspendUser_btn_Click(object sender, EventArgs e)
+        {
+            int userID = Int32.Parse(Request.Params["userID"]);
+            Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).RoleID = 2;
+            Entities._entities.SaveChanges();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

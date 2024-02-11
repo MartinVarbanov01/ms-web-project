@@ -22,7 +22,7 @@ namespace _46612r_MS.Pages
         }
         protected void LoadProducts(string search)
         {
-            foreach (var product in Entities._entities.Products.Where(p => p.ProductStatusID == 1 &&(search == "" || p.ProductName.ToLower().Contains(search.ToLower()))))
+            foreach (var product in Entities._entities.Products.Where(p => p.Users.RoleID != 3 && p.ProductStatusID == 1 &&(search == "" || p.ProductName.ToLower().Contains(search.ToLower()))))
             {
                 Literal lt = new Literal();
                 lt.Text = "<br />";

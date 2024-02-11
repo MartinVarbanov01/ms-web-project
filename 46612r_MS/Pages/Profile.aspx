@@ -41,15 +41,30 @@
             }
 
         .red {
-            width:fit-content;
-            font-weight:bold;
-            background-color:red;
-            color:white;
+            width: fit-content;
+            font-weight: bold;
+            background-color: red;
+            color: white;
+            transition:0.3s;
         }
-        .red:hover{
-            background-color:black;
-            border-color:red;
+
+            .red:hover {
+                background-color: black;
+                border-color: red;
+            }
+
+        .black {
+            width: fit-content;
+            font-weight: bold;
+            background-color: black;
+            color: white;
+            transition:0.3s;
         }
+
+            .black:hover {
+                background-color: white;
+                color:black;
+            }
     </style>
     <asp:Panel CssClass="panel" runat="server">
         <p>
@@ -84,6 +99,7 @@
         <asp:Panel CssClass="new" runat="server">
             <asp:Button CssClass="buttons borderRadius red" ID="deleteUser_btn" Text="Delete Account" runat="server" />
             <asp:Button OnClick="SuspendUser_btn_Click" CssClass="buttons borderRadius red" ID="SuspendUser_btn" Text="Suspend Account" runat="server" />
+            <asp:Button OnClick="unSuspendUser_btn_Click" CssClass="buttons borderRadius black" ID="unSuspendUser_btn" Text="Unsuspend Account" runat="server" />
         </asp:Panel>
     </asp:Panel>
     <input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['userID']" />
@@ -100,7 +116,7 @@
                     }
                 });
             }
-            
+
         }
     </script>
 </asp:Content>

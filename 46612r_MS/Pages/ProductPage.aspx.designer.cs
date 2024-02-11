@@ -105,6 +105,15 @@ namespace _46612r_MS.Pages
         protected global::System.Web.UI.WebControls.Button suspdenProd_btn;
 
         /// <summary>
+        /// unSuspendProd_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button unSuspendProd_btn;
+
+        /// <summary>
         /// deleteProd_btn control.
         /// </summary>
         /// <remarks>

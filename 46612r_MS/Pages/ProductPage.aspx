@@ -119,6 +119,20 @@
         .suspended {
             color:red;
         }
+        .black {
+            margin-top: 10px;
+            width: fit-content;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            transition: 0.3s;
+        }
+
+            .black:hover {
+                background-color: white;
+                color:black;
+            }
     </style>
     <asp:Label ID="suspendedProd_lbl" CssClass="suspended" Visible="false" Text="<h1>Product Is Suspended</h1>" runat="server" />
     <asp:Panel CssClass="mainPanel" ID="mainPanel" runat="server">
@@ -141,6 +155,7 @@
         </asp:Panel>
     </asp:Panel>
     <asp:Button OnClick="suspdenProd_btn_Click" Visible="false" CssClass="borderRadius buttons" ID="suspdenProd_btn" Text="Suspend Product" runat="server" />
+    <asp:Button OnClick="unSuspendProd_btn_Click" Visible="false" CssClass="borderRadius black" ID="unSuspendProd_btn" Text="Unsuspend Product" runat="server" />
     <asp:Button OnClick="deleteProd_btn_Click" Visible="false" CssClass="borderRadius buttons" ID="deleteProd_btn" Text="Delete Product" runat="server" />
     <asp:Label ID="prodNotFound_lbl" Visible="false" Text="<h1>Error product not found!</h1>" runat="server" />
     <script>

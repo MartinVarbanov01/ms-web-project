@@ -34,7 +34,7 @@ namespace _46612r_MS.Pages
             {
                 Response.Redirect("~/Pages/LoginPage");
             }
-            var usersList = Entities._entities.Users.Select(u => new
+            var usersList = Entities._entities.Users.Where(u => u.Email != "").Select(u => new
             {
                 u.IDUser,
                 u.Username,
