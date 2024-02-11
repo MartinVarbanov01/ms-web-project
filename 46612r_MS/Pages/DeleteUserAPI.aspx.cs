@@ -42,6 +42,7 @@ namespace _46612r_MS.Pages
             user.RoleID = 4;
             user.Photo = new byte[0];
             Entities._entities.SaveChanges();
+            Session["userID"] = null;
             Response.Redirect("~/Pages/LoginPage");
         }
         private void DeleteUserProducts(int prodID)
