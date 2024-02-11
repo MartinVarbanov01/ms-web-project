@@ -53,7 +53,7 @@
             <asp:Label Text="Password" runat="server" />
             <p></p>
             <asp:TextBox CssClass="borderRadius" TextMode="Password" ID="UserPassword" runat="server" /><p></p>
-            <asp:Label ID="wrong_pass" Visible="false" Text="Wrong password or username or both who knows!" runat="server" /><p></p>
+            <asp:Label ID="error" Visible="false" Text="Wrong password or username or both who knows!" runat="server" /><p></p>
             <asp:Button CssClass="borderRadius buttons" ID="Login_btn" OnClick="Login_btn_Click" Text="Login" runat="server" /><p></p>
             <asp:LinkButton OnClick="Register_btn_Click" CssClass="link" Text="Don't have and account? <b>Register Here</b>" runat="server" />
         </div>

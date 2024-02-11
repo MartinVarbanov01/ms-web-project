@@ -41,7 +41,7 @@ namespace _46612r_MS.Pages
             }
             else
             {
-                MessageBox.Show(Page, "This User already exists");
+                MessageBox.Show(Page, "This email is already registered");
             }
         }
 

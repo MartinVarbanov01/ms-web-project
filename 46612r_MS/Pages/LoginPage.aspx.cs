@@ -24,8 +24,20 @@ namespace _46612r_MS.Pages
             );
             if(user == null)
             {
-                wrong_pass.Visible = true;
-                //MessageBox.Show(this.Page, "ERROR! Email has been send to the developer.");
+                error.Text = "Wrong password or username or both who knows!";
+                error.Visible = true;
+                return;
+            }
+            if(user.RoleID == 3)
+            {
+                error.Text = "This account has been suspended!";
+                error.Visible = true;
+                return;
+            }
+            if(user.RoleID == 4)
+            {
+                error.Text = "Wrong password or username or both who knows!";
+                error.Visible = true;
                 return;
             }
             Session.Add("userID", user.IDUser);

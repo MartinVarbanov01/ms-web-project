@@ -37,9 +37,10 @@
             .buttons:hover {
                 background-color: #ffd280;
             }
-            .addbtn{
-                margin-top:10px;
-            }
+
+        .addbtn {
+            margin-top: 10px;
+        }
     </style>
     <asp:Panel CssClass="new" runat="server">
         <asp:Label Text="ADD NEW PRODUCT" runat="server" />
@@ -54,8 +55,7 @@
             </asp:Panel>
             <asp:Panel CssClass="kinda" runat="server">
                 <asp:Label Text="Upload an Image:" runat="server" /><p></p>
-                <asp:FileUpload CssClass="borderRadius" ID="prodPic" runat="server" /><p></p>
-
+                <asp:FileUpload accept=".png, .jpg,.jpeg" CssClass="borderRadius" ID="prodPic" runat="server" /><p></p>
                 <asp:Label Text="Price:" runat="server" /><p></p>
                 <asp:TextBox CssClass="borderRadius" ID="prodPrice" runat="server" />
             </asp:Panel>

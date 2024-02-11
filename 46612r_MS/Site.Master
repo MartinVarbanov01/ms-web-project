@@ -18,48 +18,62 @@
         #logo {
             height: 70px;
         }
-        table, tr, td{
-            border:solid 1px;
+
+        table, tr, td {
+            border: solid 1px;
         }
-        table{
-            background-color:#131921;
-            width:100%;
+
+        table {
+            background-color: #131921;
+            width: 100%;
         }
-        #search_items{
-            max-width:none;
-            width:89%;
-            height:50px;
-            margin-left:2%;
-            border-radius: 5px 0px 0px 5px;
-            color : #00000070;
-            font-weight:bold;
+
+        #search_items {
+            max-width: none;
+            width: 89%;
+            height: 50px;
+            margin-left: 2%;
+            border-radius: 10px 0px 0px 10px;
+            color: #00000070;
+            font-weight: bold;
         }
-        #search_btn{
-            width:7%;
-            height:50px;
-            border-radius: 0 5px 5px 0px;
-            background-color:orange;
-            transition:0.5s;
+
+        #search_btn {
+            width: 7%;
+            height: 50px;
+            border-radius: 0 10px 10px 0px;
+            background-color: orange;
+            transition: 0.5s;
         }
-        #search_btn:hover{
-            background-color:#ffd280;
+
+            #search_btn:hover {
+                background-color: #ffd280;
+            }
+
+        .button {
+            height: 50px;
+            width: 30%;
+            border-radius: 5px;
+            background-color: #131921;
+            border-color: white;
+            color: white;
+            transition: 0.5s;
         }
-        .button{
-            height:50px;
-            width:40%;
-            border-radius:5px;
-            background-color:#131921;
-            border-color:white;
-            color:white;
-            transition:0.5s;
+
+            .button:hover {
+                background-color: white;
+                color: #131921;
+                border-color: black;
+            }
+
+        .admin {
+            background: white url(/Images/Admin.jpg) center no-repeat;
+            background-size: contain;
+            width:fit-content;
         }
-        .button:hover{
-            background-color:white;
-            color:#131921;
-            border-color:black;
-        }
-        p{
-            margin:auto;
+
+        p {
+            margin: auto ;
         }
     </style>
 </head>
@@ -85,16 +99,19 @@
         </asp:ScriptManager>
         <table>
             <tr>
-                <td style="width:0px;">
+                <td style="width: 0px;">
                     <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
                 </td>
-                <td style="text-align:center;">
+                <td style="text-align: center;">
                     <asp:TextBox OnTextChanged="search_items_TextChanged" ID="search_items" Text="Search Alazomn" runat="server" />
                     <asp:Button OnClick="search_items_TextChanged" ID="search_btn" Text="&#128269;" runat="server" />
                 </td>
-                <td style="width:15%; text-align:center">
-                    <p><asp:Button CssClass="button" OnClick="profile_btn_Click" ID="profile_btn" Text="My Profile" runat="server" />&nbsp;&nbsp;&nbsp;
-                    <asp:Button CssClass="button" OnClick="logout_btn_Click" ID="logout_btn" Text="Log Out" runat="server" /></p>
+                <td style="width: 15%; text-align: center; vertical-align:middle">
+                    <p>
+                        <asp:Button CssClass="button" OnClick="profile_btn_Click" ID="profile_btn" Text="My Profile" runat="server" />&nbsp;
+                        <asp:Button CssClass="button" OnClick="logout_btn_Click" ID="logout_btn" Text="Log Out" runat="server" />&nbsp;
+                        <asp:Button Visible="false" CssClass="button admin" OnClick="admin_btn_Click" ID="admin_btn" Text="            " runat="server" />
+                    </p>
                 </td>
             </tr>
         </table>

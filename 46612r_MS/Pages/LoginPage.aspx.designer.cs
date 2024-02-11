@@ -51,13 +51,13 @@ namespace _46612r_MS.Pages
         protected global::System.Web.UI.WebControls.TextBox UserPassword;
 
         /// <summary>
-        /// wrong_pass control.
+        /// error control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label wrong_pass;
+        protected global::System.Web.UI.WebControls.Label error;
 
         /// <summary>
         /// Login_btn control.
