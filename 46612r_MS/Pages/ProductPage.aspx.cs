@@ -71,13 +71,25 @@ namespace _46612r_MS.Pages
             if (!IsPostBack)
             {
                 if (product.ProductsImages.ToList().Count > 0)
+                {
+                    prodImg1.Visible = true;
                     prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
+                }
                 if (product.ProductsImages.ToList().Count > 1)
+                {
+                    prodImg2.Visible = true;
                     prodImg2.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[1].Image);
+                }
                 if (product.ProductsImages.ToList().Count > 2)
+                {
+                    prodImg3.Visible = true;
                     prodImg3.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[2].Image);
+                }
                 if (product.ProductsImages.ToList().Count > 3)
+                {
+                    prodImg4.Visible = true;
                     prodImg4.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[3].Image);
+                }
                 prodName.Text = product.ProductName;
                 prodDesc.Text = product.ProductDescription;
                 prodPrice.Text = product.Price.ToString() + " лв.  ";
@@ -146,7 +158,7 @@ namespace _46612r_MS.Pages
                 var length = pic_uploader.PostedFile.ContentLength;
                 byte[] pic = new byte[length];
                 pic_uploader.PostedFile.InputStream.Read(pic, 0, length);
-                ProductsImages images = new ProductsImages() { ProductID = product.IDProduct, Image=pic};
+                ProductsImages images = new ProductsImages() { ProductID = product.IDProduct, Image = pic };
                 product.ProductsImages.Add(images);
             }
             Entities._entities.SaveChanges();

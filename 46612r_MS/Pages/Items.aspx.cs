@@ -30,6 +30,7 @@ namespace _46612r_MS.Pages
             }
             foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products.Where(p => p.ProductStatusID == 1 || p.ProductStatusID == 2))
             {
+                if (product == null) { continue; }
                 Literal lt = new Literal();
                 lt.Text = "<br />";
                 myPanel.Controls.Add(Entities.GetProductFromDB(product));

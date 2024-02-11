@@ -168,9 +168,9 @@
     <asp:Label ID="suspendedProd_lbl" CssClass="suspended" Visible="false" Text="<h1>Product Is Suspended</h1>" runat="server" />
     <asp:Panel CssClass="mainPanel" ID="mainPanel" runat="server">
         <asp:Panel CssClass="prodGallery" runat="server">
-            <asp:Image CssClass="mainImage" ID="prodImg1" ImageUrl="/Images/default-product.png" runat="server" />
+            <asp:Image CssClass="mainImage" Visible="false" ID="prodImg1" ImageUrl="/Images/default-product.png" runat="server" />
             <asp:Panel CssClass="imagesPanel" runat="server">
-                <asp:Image CssClass="images" ID="prodImg2" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" ID="prodImg3" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" ID="prodImg4" ImageUrl="/Images/default-product.png" runat="server" />
+                <asp:Image CssClass="images" Visible="false" ID="prodImg2" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" Visible="false" ID="prodImg3" ImageUrl="/Images/default-product.png" runat="server" /><asp:Image CssClass="images" Visible="false" ID="prodImg4" ImageUrl="/Images/default-product.png" runat="server" />
             </asp:Panel>
         </asp:Panel>
         <asp:Panel CssClass="infoBorder" runat="server">
