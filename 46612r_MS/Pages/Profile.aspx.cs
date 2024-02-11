@@ -104,7 +104,7 @@ namespace _46612r_MS.Pages
         {
             int userID = (int)Session["userID"];
             Users users = Entities._entities.Users.FirstOrDefault(user => user.IDUser == userID);
-            if (users.Roles.Role.ToString() == "Admin")
+            if (users.RoleID == 1)
             {
                 if (Request.Params.AllKeys.Any(usr => usr == "userID"))
                 {
