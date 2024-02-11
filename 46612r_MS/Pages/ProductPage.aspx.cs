@@ -68,17 +68,20 @@ namespace _46612r_MS.Pages
                     unSuspendProd_btn.Visible = true;
                 }
             }
-            if (product.ProductsImages.ToList().Count > 0)
-                prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
-            if (product.ProductsImages.ToList().Count > 1)
-                prodImg2.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[1].Image);
-            if (product.ProductsImages.ToList().Count > 2)
-                prodImg3.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[2].Image);
-            if (product.ProductsImages.ToList().Count > 3)
-                prodImg4.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[3].Image);
-            prodName.Text = product.ProductName;
-            prodDesc.Text = product.ProductDescription;
-            prodPrice.Text = product.Price.ToString() + " лв.  ";
+            if (!IsPostBack)
+            {
+                if (product.ProductsImages.ToList().Count > 0)
+                    prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);
+                if (product.ProductsImages.ToList().Count > 1)
+                    prodImg2.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[1].Image);
+                if (product.ProductsImages.ToList().Count > 2)
+                    prodImg3.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[2].Image);
+                if (product.ProductsImages.ToList().Count > 3)
+                    prodImg4.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[3].Image);
+                prodName.Text = product.ProductName;
+                prodDesc.Text = product.ProductDescription;
+                prodPrice.Text = product.Price.ToString() + " лв.  ";
+            }
         }
         private void AllowEdit()
         {
