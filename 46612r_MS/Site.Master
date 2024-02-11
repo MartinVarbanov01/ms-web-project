@@ -31,6 +31,8 @@
             height:50px;
             margin-left:2%;
             border-radius: 5px 0px 0px 5px;
+            color : #00000070;
+            font-weight:bold;
         }
         #search_btn{
             width:7%;
@@ -42,19 +44,22 @@
         #search_btn:hover{
             background-color:#ffd280;
         }
-        #profile_btn{
+        .button{
             height:50px;
-            width:100%;
+            width:40%;
             border-radius:5px;
             background-color:#131921;
             border-color:white;
             color:white;
             transition:0.5s;
         }
-        #profile_btn:hover{
+        .button:hover{
             background-color:white;
             color:#131921;
             border-color:black;
+        }
+        p{
+            margin:auto;
         }
     </style>
 </head>
@@ -78,24 +83,6 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
-        <%--<nav class="navbar navbar-expand-sm navbar-toggleable-sm">
-            <div class="container">
-                <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        --%>
         <table>
             <tr>
                 <td style="width:0px;">
@@ -103,10 +90,11 @@
                 </td>
                 <td style="text-align:center;">
                     <asp:TextBox OnTextChanged="search_items_TextChanged" ID="search_items" Text="Search Alazomn" runat="server" />
-                    <asp:Button OnClick="search_btn_Click" ID="search_btn" Text="&#128269;" runat="server" />
+                    <asp:Button OnClick="search_items_TextChanged" ID="search_btn" Text="&#128269;" runat="server" />
                 </td>
                 <td style="width:15%; text-align:center">
-                    <asp:Button OnClick="profile_btn_Click" ID="profile_btn" Text="My Profile" runat="server" />
+                    <p><asp:Button CssClass="button" OnClick="profile_btn_Click" ID="profile_btn" Text="My Profile" runat="server" />&nbsp;&nbsp;&nbsp;
+                    <asp:Button CssClass="button" OnClick="logout_btn_Click" ID="logout_btn" Text="Log Out" runat="server" /></p>
                 </td>
             </tr>
         </table>
@@ -127,6 +115,7 @@
         search.addEventListener("click", search_items_click)
         function search_items_click() {
             search.value = "";
+            search.style.color = "black";
         }
     </script>
 </body>

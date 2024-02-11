@@ -37,6 +37,9 @@
             .buttons:hover {
                 background-color: #ffd280;
             }
+            .addbtn{
+                margin-top:10px;
+            }
     </style>
     <asp:Panel CssClass="new" runat="server">
         <asp:Label Text="ADD NEW PRODUCT" runat="server" />
@@ -58,34 +61,29 @@
             </asp:Panel>
             <p></p>
         </asp:Panel>
-        <asp:Button CssClass="buttons borderRadius" OnClick="addProduct_btn_Click" ID="addProduct_btn" Text="Add Product" runat="server" /><p></p>
+        <asp:Button CssClass="buttons borderRadius addbtn" OnClick="addProduct_btn_Click" ID="addProduct_btn" Text="Add Product" runat="server" /><p></p>
         <hr />
     </asp:Panel>
     <asp:Panel ID="myPanel" runat="server"></asp:Panel>
     <script>
         var img = document.getElementsByClassName("imageProd");
-        img.forEach(Resize)
-        function Resize(img) {
-            var imgRation = img.style.height / img.style.width;
-            if (img.style.width > img.style.height) {
-                img.style.width = "200px";
-                img.style.height = (200 * imgRation).toString() + "px";
+        for (let i = 0; i < img.length; i++) {
+            Resize(img[i]);
+        }
+        function Resize(imgSize) {
+            var imgRation = imgSize.height / imgSize.width;
+            if (imgSize.width > imgSize.height) {
+                imgSize.style.width = "200px";
+                imgSize.style.height = (200 * imgRation).toString() + "px";
             }
             else {
-                img.style.height = "200px";
-                img.style.width = (200 / imgRation).toString() + "px";
+                imgSize.style.height = "200px";
+                imgSize.style.width = (200 / imgRation).toString() + "px";
             }
         }
         function productClicked(prodID) {
             IDProd = prodID.replace('MainContent_', '');
-            $.ajax({
-                url: 'ProductPage',
-                type: "POST",
-                data: { "prodID": IDProd },
-                success: function (page) {
-                    window.location.href = "ProductPage?prodID=" + IDProd;
-                }
-            });
+            window.location.href = "ProductPage?prodID=" + IDProd;
         }
     </script>
 </asp:Content>

@@ -22,12 +22,17 @@ namespace _46612r_MS.Pages
         }
         protected void LoadProducts(string search)
         {
-            foreach (var product in Entities._entities.Products.Where(p => p.ProductStatusID == 1 &&(search == "" || p.ProductName.ToLower().Contains(search.ToLower()) || p.ProductDescription.ToLower().Contains(search.ToLower()))))
+            foreach (var product in Entities._entities.Products.Where(p => p.ProductStatusID == 1 &&(search == "" || p.ProductName.ToLower().Contains(search.ToLower()))))
             {
                 Literal lt = new Literal();
                 lt.Text = "<br />";
                 myPanel.Controls.Add(Entities.GetProductFromDB(product));
                 myPanel.Controls.Add(lt);
+            }
+            noItems_lbl.Visible = false;
+            if (myPanel.Controls.Count == 0)
+            {
+                noItems_lbl.Visible = true;
             }
         }
     }

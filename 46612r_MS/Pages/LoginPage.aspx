@@ -44,7 +44,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="LogoHolder">
-            <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" />
+            <asp:Image ID="logo" ImageUrl="~/Images/logo_new_white.png" runat="server" />
             <p>&nbsp;</p>
             <asp:Label Text="Email" runat="server" />
             <p></p>

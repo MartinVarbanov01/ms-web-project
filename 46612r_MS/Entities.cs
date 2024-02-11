@@ -15,7 +15,7 @@ namespace _46612r_MS
         public static Panel GetProductFromDB(Products product)
         {
             Image Img = new Image();
-            Img.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(product.ProductsImages.FirstOrDefault().Image);
+            Img.ImageUrl = GetImageFromBytes(product.ProductsImages.FirstOrDefault().Image);
             Img.CssClass = "imageProd";
             Img.Style.Add("border-radius", "10px");
             Img.Style.Add("border", "solid 2px");
@@ -80,6 +80,10 @@ namespace _46612r_MS
             
             
             return ProdPanel;
+        }
+        public static string GetImageFromBytes(byte[] img)
+        {
+            return "data:image/png;base64," + Convert.ToBase64String(img);
         }
     }
 }

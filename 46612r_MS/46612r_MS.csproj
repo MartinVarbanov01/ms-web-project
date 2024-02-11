@@ -161,11 +161,10 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\default-product.png" />
     <Content Include="Images\default-profile-icon.jpg" />
-    <Content Include="Images\image0_0.jpg" />
-    <Content Include="Images\image1_0.jpg" />
-    <Content Include="Images\logo.png" />
     <Content Include="Images\logo_new.png" />
+    <Content Include="Images\logo_new_white.png" />
     <Content Include="Models\DatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>

@@ -49,7 +49,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="LogoHolder">
-            <asp:Image ID="logo" ImageUrl="~/Images/logo_new.png" runat="server" /><p></p>
+            <asp:Image ID="logo" ImageUrl="~/Images/logo_new_white.png" runat="server" /><p></p>
             <asp:Label ID="header" Text="Fill the registration form" runat="server" />
             <p>&nbsp;</p>
             <asp:Label Text="Username" runat="server" />

@@ -18,7 +18,7 @@ namespace _46612r_MS.Pages
             }
             int userID = (int)Session["userID"];
             Users users = Entities._entities.Users.FirstOrDefault(user => user.IDUser == userID);
-            profilePic.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(users.Photo);
+            profilePic.ImageUrl = Entities.GetImageFromBytes(users.Photo);
             profilePic.Style.Add("width", "200px");
             profilePic.Style.Add("height", "200px");
             profilePic.Style.Add("border-radius", "5px");
@@ -65,7 +65,11 @@ namespace _46612r_MS.Pages
                     return;
                 }
                 UserProf.Password = profilePassNew.Text;
+                Entities._entities.SaveChanges();
+                Session["userID"] = null;
+                Response.Redirect("~/Pages/LoginPage");
             }
+            Response.Redirect(Request.RawUrl);
             error.Visible = false;
         }
 

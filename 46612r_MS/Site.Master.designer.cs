@@ -51,6 +51,15 @@ namespace _46612r_MS
         protected global::System.Web.UI.WebControls.Button profile_btn;
 
         /// <summary>
+        /// logout_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button logout_btn;
+
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

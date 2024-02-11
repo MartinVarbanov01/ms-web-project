@@ -2,11 +2,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <style>
-        .panel {
-        }
-    </style>
-    <asp:Panel CssClass="panel" ID="myPanel" runat="server"></asp:Panel>
+    <asp:Panel ID="myPanel" runat="server"></asp:Panel>
+    <asp:Label Visible="false" ID="noItems_lbl" Text="<h1>No Items Match!</h1>" runat="server" />
     <script>
         var img = document.getElementsByClassName("imageProd");
         for (let i = 0; i < img.length; i++) {
@@ -25,25 +22,7 @@
         }
         function productClicked(prodID) {
             IDProd = prodID.replace('MainContent_', '');
-            $.ajax({
-                url: 'ProductPage',
-                type: "POST",
-                data: { "prodID": IDProd },
-                success: function (page) {
-                    window.location.href = "ProductPage?prodID=" + IDProd;
-                }
-            });
-        }
-        function productClicked(prodID) {
-            IDProd = prodID.replace('MainContent_', '');
-            $.ajax({
-                url: 'ProductPage',
-                type: "POST",
-                data: { "prodID": IDProd },
-                success: function (page) {
-                    window.location.href = "ProductPage?prodID=" + IDProd;
-                }
-            });
+            window.location.href = "ProductPage?prodID=" + IDProd;
         }
     </script>
 </asp:Content>
