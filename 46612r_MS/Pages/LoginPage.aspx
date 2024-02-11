@@ -12,7 +12,7 @@
             border-radius: 10px;
         }
 
-        #wrong_pass {
+        #error {
             color: red;
         }
 

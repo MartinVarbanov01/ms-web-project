@@ -32,7 +32,7 @@ namespace _46612r_MS.Pages
                     users.Add(createUser);
                     Entities._entities.SaveChanges();
                     Session.Add("userID", Entities._entities.Users.FirstOrDefault(p => p.Email == Email.Text).IDUser);
-                    Response.Redirect("MainPage.aspx");
+                    Response.Redirect("~/Pages/MainPage");
                 }
                 else
                 {

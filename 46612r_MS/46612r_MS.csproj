@@ -177,6 +177,7 @@
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
     <Content Include="Pages\AdminPage.aspx" />
+    <Content Include="Pages\DeleteUserAPI.aspx" />
     <Content Include="Pages\Items.aspx" />
     <Content Include="Pages\LoginPage.aspx" />
     <Content Include="Pages\MainPage.aspx" />
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="Pages\AdminPage.aspx.designer.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DeleteUserAPI.aspx.cs">
+      <DependentUpon>DeleteUserAPI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DeleteUserAPI.aspx.designer.cs">
+      <DependentUpon>DeleteUserAPI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Items.aspx.cs">
       <DependentUpon>Items.aspx</DependentUpon>

@@ -15,7 +15,7 @@ namespace _46612r_MS.Pages
         {
             if (Session["userID"] == null)
             {
-                Response.Redirect("LoginPage");
+                Response.Redirect("~/Pages/LoginPage");
             }
             string search = Request.Params["search"] ?? "";
             LoadProducts(search);

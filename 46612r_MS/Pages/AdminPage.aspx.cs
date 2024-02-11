@@ -32,7 +32,7 @@ namespace _46612r_MS.Pages
         {
             if (Session["userID"] == null)
             {
-                Response.Redirect("LoginPage");
+                Response.Redirect("~/Pages/LoginPage");
             }
             var usersList = Entities._entities.Users.Select(u => new
             {

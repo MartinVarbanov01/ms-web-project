@@ -14,7 +14,7 @@ namespace _46612r_MS
         {
             if (Session["userID"] == null)
             {
-                Response.Redirect("LoginPage");
+                Response.Redirect("~/Pages/LoginPage");
             }
             if (search_items.Text != "Search Alazomn")
             {

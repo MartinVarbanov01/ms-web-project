@@ -39,6 +39,15 @@
             .buttons:hover {
                 background-color: #ffd280;
             }
+
+        .red {
+            background-color:red;
+            color:white;
+        }
+        .red:hover{
+            background-color:black;
+            border-color:red;
+        }
     </style>
     <asp:Panel CssClass="panel" runat="server">
         <p>
@@ -70,5 +79,16 @@
         <asp:Panel CssClass="new" runat="server">
             <asp:Button CssClass="buttons borderRadius" OnClick="myProd_btn_Click" ID="myProd_btn" Text="My Products" runat="server" />
         </asp:Panel>
+        <asp:Panel CssClass="new" runat="server">
+            <asp:Button CssClass="buttons borderRadius red" OnClick="deleteUser_btn_Click" ID="deleteUser_btn" Text="Delete Account" runat="server" />
+        </asp:Panel>
     </asp:Panel>
+    <script>
+        document.getElementById("MainContent_deleteUser_btn").addEventListener("click", ConfirmDeletion);
+        function ConfirmDeletion() {
+            if (confirm("Are you sure you want to delete your profile?")) {
+
+            }
+        }
+    </script>
 </asp:Content>

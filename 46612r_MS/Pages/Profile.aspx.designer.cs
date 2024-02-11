@@ -139,5 +139,14 @@ namespace _46612r_MS.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button myProd_btn;
+
+        /// <summary>
+        /// deleteUser_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button deleteUser_btn;
     }
 }

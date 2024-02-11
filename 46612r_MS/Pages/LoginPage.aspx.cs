@@ -41,12 +41,12 @@ namespace _46612r_MS.Pages
                 return;
             }
             Session.Add("userID", user.IDUser);
-            Response.Redirect("MainPage.aspx");
+            Response.Redirect("~/Pages/MainPage");
         }
 
         protected void Register_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegisterPage.aspx");
+            Response.Redirect("~/Pages/RegisterPage");
         }
     }
 }

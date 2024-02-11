@@ -1,4 +1,5 @@
 ﻿using _46612r_MS.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,10 @@ namespace _46612r_MS.Pages
         {
             if (Session["userID"] == null)
             {
-                Response.Redirect("LoginPage");
+                Response.Redirect("~/Pages/LoginPage");
             }
-            int userID = (int)Session["userID"];
-            Users users = Entities._entities.Users.FirstOrDefault(user => user.IDUser == userID);
-            profilePic.ImageUrl = Entities.GetImageFromBytes(users.Photo);
-            profilePic.Style.Add("width", "200px");
-            profilePic.Style.Add("height", "200px");
-            profilePic.Style.Add("border-radius", "5px");
-            profileUsername.Text = users.Username;
-            profileEmail.Text = users.Email;
+            Users users = GetUser();
+            LoadProfile(users);
         }
 
         protected void editProfile_Click(object sender, EventArgs e)
@@ -76,6 +71,38 @@ namespace _46612r_MS.Pages
         protected void myProd_btn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Pages/Items");
+        }
+        private void LoadProfile(Users users)
+        {
+            profilePic.ImageUrl = Entities.GetImageFromBytes(users.Photo);
+            profilePic.Style.Add("width", "200px");
+            profilePic.Style.Add("height", "200px");
+            profilePic.Style.Add("border-radius", "5px");
+            profileUsername.Text = users.Username;
+            profileEmail.Text = users.Email;
+        }
+        private Users GetUser()
+        {
+            int userID = (int)Session["userID"];
+            Users users = Entities._entities.Users.FirstOrDefault(user => user.IDUser == userID);
+            if (users.Roles.Role.ToString() == "Admin")
+            {
+                if (Request.Params.AllKeys.Any(usr => usr == "userID"))
+                {
+                    try
+                    {
+                        userID = Int32.Parse(this.Request.Params["userID"]);
+                        Users adminInUser = Entities._entities.Users.FirstOrDefault(user => user.IDUser == userID);
+                        return adminInUser;
+                    }
+                    catch { Response.Redirect("~/Pages/ProfilePage"); }
+                }
+            }
+            return users;
+        }
+
+        protected void deleteUser_btn_Click(object sender, EventArgs e)
+        {
         }
     }
 }

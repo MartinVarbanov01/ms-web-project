@@ -16,7 +16,7 @@ namespace _46612r_MS.Pages
         {
             if (Session["userID"] == null)
             {
-                Response.Redirect("LoginPage");
+                Response.Redirect("~/Pages/LoginPage");
             }
             int userID = (int)Session["userID"];
             foreach (var product in Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).Products.Where(p => p.ProductStatusID == 1 || p.ProductStatusID == 2))
