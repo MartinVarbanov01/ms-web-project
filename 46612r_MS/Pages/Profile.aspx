@@ -41,6 +41,8 @@
             }
 
         .red {
+            width:fit-content;
+            font-weight:bold;
             background-color:red;
             color:white;
         }
@@ -80,15 +82,25 @@
             <asp:Button CssClass="buttons borderRadius" OnClick="myProd_btn_Click" ID="myProd_btn" Text="My Products" runat="server" />
         </asp:Panel>
         <asp:Panel CssClass="new" runat="server">
-            <asp:Button CssClass="buttons borderRadius red" OnClick="deleteUser_btn_Click" ID="deleteUser_btn" Text="Delete Account" runat="server" />
+            <asp:Button CssClass="buttons borderRadius red" ID="deleteUser_btn" Text="Delete Account" runat="server" />
+            <asp:Button OnClick="SuspendUser_btn_Click" CssClass="buttons borderRadius red" ID="SuspendUser_btn" Text="Suspend Account" runat="server" />
         </asp:Panel>
     </asp:Panel>
+    <input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['userID']" />
     <script>
         document.getElementById("MainContent_deleteUser_btn").addEventListener("click", ConfirmDeletion);
         function ConfirmDeletion() {
             if (confirm("Are you sure you want to delete your profile?")) {
-
+                $.ajax({
+                    url: '/Pages/GetSession',
+                    type: "POST",
+                    async: true,
+                    success: function (data) {
+                        window.location.href = "/Pages/DeleteUserAPI?userID=" + data;
+                    }
+                });
             }
+            
         }
     </script>
 </asp:Content>

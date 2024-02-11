@@ -52,9 +52,9 @@ namespace _46612r_MS.Pages
             {
                 AllowEdit();
             }
-            else if (user.RoleID == 2)
+            else if (user.RoleID == 1)
             {
-                deleteProd_btn.Visible = true;
+                suspdenProd_btn.Visible = true;
             }
             if (product.ProductsImages.ToList().Count > 0)
                 prodImg1.ImageUrl = Entities.GetImageFromBytes(product.ProductsImages.ToList()[0].Image);

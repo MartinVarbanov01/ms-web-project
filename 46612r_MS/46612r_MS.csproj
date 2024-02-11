@@ -178,6 +178,7 @@
     </Content>
     <Content Include="Pages\AdminPage.aspx" />
     <Content Include="Pages\DeleteUserAPI.aspx" />
+    <Content Include="Pages\GetSession.aspx" />
     <Content Include="Pages\Items.aspx" />
     <Content Include="Pages\LoginPage.aspx" />
     <Content Include="Pages\MainPage.aspx" />
@@ -333,6 +334,13 @@
     </Compile>
     <Compile Include="Pages\DeleteUserAPI.aspx.designer.cs">
       <DependentUpon>DeleteUserAPI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GetSession.aspx.cs">
+      <DependentUpon>GetSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GetSession.aspx.designer.cs">
+      <DependentUpon>GetSession.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Items.aspx.cs">
       <DependentUpon>Items.aspx</DependentUpon>

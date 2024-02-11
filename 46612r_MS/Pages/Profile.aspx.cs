@@ -17,8 +17,9 @@ namespace _46612r_MS.Pages
             {
                 Response.Redirect("~/Pages/LoginPage");
             }
+            int userID = (int)Session["userID"];
             Users users = GetUser();
-            LoadProfile(users);
+            LoadProfile(users, userID != users.IDUser);
         }
 
         protected void editProfile_Click(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace _46612r_MS.Pages
         {
             Response.Redirect("~/Pages/Items");
         }
-        private void LoadProfile(Users users)
+        private void LoadProfile(Users users, bool isAdmin)
         {
             profilePic.ImageUrl = Entities.GetImageFromBytes(users.Photo);
             profilePic.Style.Add("width", "200px");
@@ -80,6 +81,13 @@ namespace _46612r_MS.Pages
             profilePic.Style.Add("border-radius", "5px");
             profileUsername.Text = users.Username;
             profileEmail.Text = users.Email;
+            SuspendUser_btn.Visible = false;
+            if (isAdmin)
+            {
+                editProfile.Visible = false;
+                deleteUser_btn.Visible = false;
+                SuspendUser_btn.Visible = true;
+            }
         }
         private Users GetUser()
         {
@@ -101,8 +109,11 @@ namespace _46612r_MS.Pages
             return users;
         }
 
-        protected void deleteUser_btn_Click(object sender, EventArgs e)
+        protected void SuspendUser_btn_Click(object sender, EventArgs e)
         {
+            int userID = Int32.Parse(Request.Params["userID"]);
+            Entities._entities.Users.FirstOrDefault(u => u.IDUser == userID).RoleID = 3;
+            Entities._entities.SaveChanges();
         }
     }
 }
